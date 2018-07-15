@@ -4,14 +4,20 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
+// path to device portal
+// LocalAppData\SOMEAPP\RoamingState
+
 
 public class ReadAIMFile : MonoBehaviour {
+
+    //public ScriptableObjectClass scriptableObjectClass;
+    public ScriptableObjectClass scriptableObject;
 
     public const int ONE_FRAME_VALUES_SIZE = 1024; //do not change
     public const int NUMBER_OF_FRAMES = 1000;      // number of frames in AIM file, modificable
     public const int ALL_FRAMES_VALUES_SIZE = ONE_FRAME_VALUES_SIZE * NUMBER_OF_FRAMES;  // do not change
 
-    private List<List<float>> values = new List<List<float>>(ALL_FRAMES_VALUES_SIZE);
+    private List<List<float>> values;
     public List<List<float>> Values
     {
         get
@@ -20,7 +26,7 @@ public class ReadAIMFile : MonoBehaviour {
         }
     }
 
-    private List<Texture2D> frames = new List<Texture2D>(NUMBER_OF_FRAMES);
+    private List<Texture2D> frames;
     public List<Texture2D> Frames
     {
         get
@@ -30,21 +36,30 @@ public class ReadAIMFile : MonoBehaviour {
     }
 
     private ReadWrite readWrite;
+    private int oneFrameValuesSize, numberOfFrames, allFramesValuesSize;
+
+    private void Awake()
+    {
+        oneFrameValuesSize = scriptableObject.oneFrameValuesSize;
+        numberOfFrames = scriptableObject.numberOfFrames;
+        allFramesValuesSize = oneFrameValuesSize * numberOfFrames;
+
+        values = new List<List<float>>(allFramesValuesSize);
+        frames = new List<Texture2D>(numberOfFrames);
+
+        readWrite = GetComponent<ReadWrite>();
+
+        ConvertsAIMToImages();
+    }
 
     // Use this for initialization
     void Start ()
     {
-        readWrite = GetComponent<ReadWrite>();
 
-        ConvertsAIMToImages();
+
 
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     void ConvertsAIMToImages()
     {
         Debug.Log("convertsAIMToImages start!");
@@ -4619,7 +4634,7 @@ public class ReadAIMFile : MonoBehaviour {
         
         int numberOfFrames = 0;
 
-        List<float> oneFrameValues = new List<float>(ONE_FRAME_VALUES_SIZE);
+        List<float> oneFrameValues = new List<float>(oneFrameValuesSize);
 
         Texture2D oneFrame = new Texture2D(32,32);
 

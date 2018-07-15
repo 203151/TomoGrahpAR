@@ -256,6 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e5ad67adb26dc0478198521b7a37c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptableObject: {fileID: 11400000, guid: e7e5067d2c600e6439e8fae8be7ee052, type: 2}
   TomographPrefab: {fileID: 1473881009953486, guid: ddf2bec762c079e4fb73b319e5cbb048,
     type: 2}
 --- !u!114 &117045024
@@ -269,6 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35601f9421a8f904b8cf5456c7e5195e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptableObject: {fileID: 11400000, guid: e7e5067d2c600e6439e8fae8be7ee052, type: 2}
   graphPrefab: {fileID: 1064175428662354, guid: 266c049d9cd2bed4fa2271071093d7c4,
     type: 2}
 --- !u!114 &117045025
@@ -1221,6 +1223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf35010214e72447a3ecc74aad93950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptableObject: {fileID: 11400000, guid: e7e5067d2c600e6439e8fae8be7ee052, type: 2}
 --- !u!114 &611134833
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,7 +7,9 @@ using UnityEngine.UI;
 
 public class CreateTomograph : MonoBehaviour
 {
-    public static int MAX_SIZE_OF_TOMOGRAPH = 10240;  //number of frames in AIM file. modificable
+    public ScriptableObjectClass scriptableObject;
+    private int oneFrameValuesSize, numberOfFrames;
+
     public GameObject TomographPrefab;
     private TextToSpeech textToSpeech;
     private BigImage bigImage;
@@ -57,18 +59,18 @@ public class CreateTomograph : MonoBehaviour
             textToSpeech.StopSpeaking(); 
 #endif
 
-                Texture2D tomograhpImage = new Texture2D(MAX_SIZE_OF_TOMOGRAPH, 32);
+                Texture2D tomograhpImage = new Texture2D(scriptableObject.numberOfFrames, 32);
                 Debug.Log("We have X");
                 foreach ( var frame in allImagesForFrames )
                 {
-                    oneRowOrColumn = frame.GetPixels(numberOfRowOrColumn, 0, 1, 31);
-                    tomograhpImage.SetPixels( numberOfFrame, 0, 1, 31, oneRowOrColumn);
+                    oneRowOrColumn = frame.GetPixels(numberOfRowOrColumn, 0, 1, 32);
+                    tomograhpImage.SetPixels( numberOfFrame, 0, 1, 32, oneRowOrColumn);
                     numberOfFrame++;
                 }
                 
                 tomograhpImage.Apply();
                 tomographGameObject = Instantiate(TomographPrefab);
-                tomographGameObject.gameObject.GetComponent<Image>().sprite = Sprite.Create(tomograhpImage, new Rect(0, 0, numberOfFrame, 31), new Vector2(0, 0));
+                tomographGameObject.gameObject.GetComponent<Image>().sprite = Sprite.Create(tomograhpImage, new Rect(0, 0, numberOfFrame, 32), new Vector2(0, 0));
                 tomographGameObject.transform.SetParent(gameObject.transform.parent, false);
                 tomographGameObject.transform.localScale = new Vector3 (0.4f * ( (numberOfFrame / 32) + ( (float)(numberOfFrame % 32) / 32) ), tomographGameObject.transform.localScale.y, tomographGameObject.transform.localScale.z);
                 bigFrameImage.enabled = false;
@@ -85,7 +87,7 @@ public class CreateTomograph : MonoBehaviour
             textToSpeech.StopSpeaking(); 
 #endif
 
-                Texture2D tomograhpImage = new Texture2D(32, MAX_SIZE_OF_TOMOGRAPH);
+                Texture2D tomograhpImage = new Texture2D(32, scriptableObject.numberOfFrames);
                 Debug.Log("We have Y");
                 foreach ( var frame in allImagesForFrames )
                 {

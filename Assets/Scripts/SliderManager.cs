@@ -12,8 +12,7 @@ public class SliderManager : MonoBehaviour
     List<Texture2D> allImagesForFrames;
     ReadAIMFile readAIM;
     Image [] smallFramesImages;
-    //SpriteRenderer [] smallFramesSpriteRenderers;
-    // Use this for initialization
+
     void Start ()
     {
         
@@ -65,11 +64,7 @@ public class SliderManager : MonoBehaviour
         int sliderNumber = (int)thisSlider.value++;
         //sliderNumber++;
         Debug.Log("slider number " + sliderNumber);
-        //foreach ( var sFrame in smallFramesImages )
-        //{
-        //    smallFramesImages[i].sprite = Sprite.Create(allImagesForFrames[i + sliderNumber], new Rect(0, 0, 32, 32), new Vector2());
-        //    i++;
-        //}
+
     }
 
     public void PreviousFrame()
@@ -78,11 +73,7 @@ public class SliderManager : MonoBehaviour
         int sliderNumber = (int)thisSlider.value--;
         //sliderNumber++;
         Debug.Log("slider number " + sliderNumber);
-        //foreach ( var sFrame in smallFramesImages )
-        //{
-        //    smallFramesImages[i].sprite = Sprite.Create(allImagesForFrames[i + sliderNumber], new Rect(0, 0, 32, 32), new Vector2());
-        //    i++;
-        //}
+
     }
 
 }
