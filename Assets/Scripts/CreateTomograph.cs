@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class CreateTomograph : MonoBehaviour
 {
-    public static int MAX_SIZE_OF_TOMOGRAPH = 1024;  //number of frames in AIM file. modificable
+    public static int MAX_SIZE_OF_TOMOGRAPH = 10240;  //number of frames in AIM file. modificable
     public GameObject TomographPrefab;
     private TextToSpeech textToSpeech;
     private BigImage bigImage;
@@ -39,9 +39,7 @@ public class CreateTomograph : MonoBehaviour
         if(CheckPoints(ref isItX, ref numberOfRowOrColumn) )
         {
 #if !UNITY_EDITOR
-            //string text = "Creating Tomograph in one line" + 5 ;
-            //textToSpeech.StartSpeaking(text);
-            //textToSpeech.StopSpeaking(); 
+
 #else
             Debug.Log("Good points, isItX = " + isItX + " numberOfRowOrColumn = " + numberOfRowOrColumn);
 #endif
@@ -54,7 +52,7 @@ public class CreateTomograph : MonoBehaviour
             {
 
 #if !UNITY_EDITOR
-            string text = "Creating Tomograph on X equals " + numberOfRowOrColumn ;
+            string text = "Creating Topogram on X equals " + numberOfRowOrColumn ;
             textToSpeech.StartSpeaking(text);
             textToSpeech.StopSpeaking(); 
 #endif
@@ -82,7 +80,7 @@ public class CreateTomograph : MonoBehaviour
             {
 
 #if !UNITY_EDITOR
-            string text = "Creating Tomograph on Y equals " + numberOfRowOrColumn ;
+            string text = "Creating Topogram on Y equals " + numberOfRowOrColumn ;
             textToSpeech.StartSpeaking(text);
             textToSpeech.StopSpeaking(); 
 #endif

@@ -4,7 +4,7 @@ using UnityEngine;
 using HoloToolkit.Unity.InputModule;
 using UnityEngine.UI;
 
-public class Tomograph : MonoBehaviour, IInputClickHandler
+public class Graph : MonoBehaviour, IInputClickHandler
 {
 
     private SliderManager sliderManager;
@@ -18,7 +18,7 @@ public class Tomograph : MonoBehaviour, IInputClickHandler
 
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         sliderManager = GameObject.Find("Slider").GetComponent<SliderManager>();
         readAIM = GameObject.FindGameObjectWithTag("Manager").GetComponent<ReadAIMFile>();
@@ -29,10 +29,6 @@ public class Tomograph : MonoBehaviour, IInputClickHandler
     public void OnInputClicked(InputClickedEventData eventData)
     {
 
-        xScale = gameObject.transform.localScale.x;
-        yScale = gameObject.transform.localScale.y;
-
-
         RaycastHit hit = GazeManager.Instance.HitInfo;
 
         Texture2D texture = myImage.sprite.texture;
@@ -40,21 +36,9 @@ public class Tomograph : MonoBehaviour, IInputClickHandler
         Vector2 pixelUV = hit.textureCoord;
         Debug.Log("Tomograph - OnInputClicked pixelUV = " + pixelUV);
 
-
-        if ( xScale > yScale )
-        {
-            shiftedFrameNumber = (int)((1 - pixelUV.x) * (totalNumberOfFrames)); 
+            shiftedFrameNumber = (int)((1 - pixelUV.x) * (totalNumberOfFrames));
             sliderManager.thisSlider.value = shiftedFrameNumber;
             //sliderManager.ChangeSmallFramesToGivenFrame(shiftedFrameNumber);
-        }
-        else
-        {
-            shiftedFrameNumber = (int)((1 - pixelUV.y) * ( totalNumberOfFrames) ); 
-            sliderManager.thisSlider.value = shiftedFrameNumber;
-            //sliderManager.ChangeSmallFramesToGivenFrame(shiftedFrameNumber);
-        }
-
-
 
     }
 }
